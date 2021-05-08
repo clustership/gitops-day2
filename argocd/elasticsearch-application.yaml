@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: elastic-operator-deployment
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-operators-redhat
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: elasticsearch/base
+    repoURL: https://github.com/clustership/gitops-day2.git
+    targetRevision: HEAD
