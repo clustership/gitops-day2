@@ -1,0 +1,41 @@
+# StackRox Central Services Chart - PUBLIC configuration values.
+# These are the public values for the deployment of the StackRox Central Service
+s chart.
+# You can safely store this file in a source-code management system, as it does
+not contain
+# sensitive information. It is recommended to reference this file via the '-f' o
+ption
+# whenever running a 'helm upgrade' command.
+
+env:
+  openshift: true
+  offlineMode: false
+imagePullSecrets:
+  username: rhacsbdm
+  password: blublu12
+central:
+  disableTelemetry: false
+  # change this admin password!
+  adminPassword:
+    htpasswd: "admin:$2y$05$dzvTp.xhc3Z9878TwFwpoOmYgiy.BsYglKAd/1LbIi/xuIETc2jk2"
+  resources:
+  # this is where you can adjust the requests down if you have smaller nodes
+    requests:
+      memory: "2Gi"
+      cpu: "1000m"
+    limits:
+      memory: "4Gi"
+      cpu: "2000m"
+  persistence:
+    persistentVolumeClaim:
+      claimName: "stackrox-db"
+      size: "100Gi"
+  exposure:
+    route:
+      enabled: true
+
+scanner:
+  # IMPORTANT: If you do not wish to run StackRox Scanner, change the value on t
+he following
+  # line to "true".
+  disable: false
