@@ -9,7 +9,7 @@ stackrox-central-services:
     other:
       securitycontextconstraints/*:
         annotations:
-          argocd.argoproj.io/sync-wave: "1"
+          argocd.argoproj.io/sync-wave: "-10"
   env:
     openshift: true
     offlineMode: false
