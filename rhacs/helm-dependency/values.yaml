@@ -5,6 +5,11 @@
 # whenever running a 'helm upgrade' command.
 
 stackrox-central-services:
+  customize:
+    other:
+      securitycontextconstraints/*:
+        annotations:
+          argocd.argoproj.io/sync-wave: "1"
   env:
     openshift: true
     offlineMode: false
